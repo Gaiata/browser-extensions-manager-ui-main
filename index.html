@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería de Extensiones</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="container">
+      <!-- Card superior -->
+    <section class="top-card">
+    <div class="top-card-left">
+      <span class="top-card-icon" aria-hidden="true"></span>
+      <h2>Extensiones</h2>
+    </div>
+    <button id="theme-toggle" class="btn-icon" aria-label="Cambiar tema">🌙</button>
+  </section>
+  <!-- Header principal -->
+
+  <header class="site-header">
+    <h1 class="site-title">Extension Lista</h1>
+    <div class="filters" role="group" aria-label="Filtros de estado">
+      <button data-filter="all" class="btn-filter active" aria-pressed="true">All</button>
+      <button data-filter="active" class="btn-filter" aria-pressed="false">Active</button>
+      <button data-filter="inactive" class="btn-filter" aria-pressed="false">Inactive</button>
+    </div>
+  </header>
+  <!-- Contenedor de cards -->
+
+    <div id="cards-container" aria-live="polite"></div>
+  </main>
+
+  <script defer src="js/main.js"></script>
+</body>
+</html>

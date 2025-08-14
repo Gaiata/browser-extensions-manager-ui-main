@@ -1,0 +1,244 @@
+/* =========================
+   Variables de tema
+   ========================= */
+   :root {
+    --bg: #0f1220;
+    --card: #161a2b;
+    --text: #e8eaf2;
+    --muted: #a5acc5;
+    --radius: 12px;
+    --shadow: 0 6px 18px rgba(0,0,0,.25);
+    --grid-gap: 20px;
+  }
+  
+  .light-theme {
+    --bg: #f5f6fa;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #4b5563;
+    --shadow: 0 6px 18px rgba(0,0,0,.12);
+  }
+  
+  /* =========================
+     Reset mínimo
+     ========================= */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  img { display: block; max-width: 100%; }
+  
+  /* =========================
+     Base
+     ========================= */
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif;
+    line-height: 1.5;
+  }
+  
+  /* =========================
+     Top card (visible y arriba)
+     ========================= */
+  .top-card {
+    background: var(--card);
+    color: var(--text);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    max-width: 1068px;
+    margin: 20px auto 0;
+    border-radius: var(--radius);
+  }
+  .top-card-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .top-card h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+  .top-card-icon { 
+    font-size: 20px; 
+  }
+  .btn-icon {
+    background: transparent;
+    border: 1px solid #ffffff; /* blanco siempre para cumplir requerimiento */
+    color: #ffffff;            /* blanco siempre */
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .light-theme .btn-icon {
+    /* Mantener blanco en tema claro, como pediste */
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  .btn-icon:hover {
+    filter: brightness(0.92);
+  }
+  
+  /* =========================
+     Header + filtros
+     ========================= */
+  .site-header {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 20px; /* arriba 20px, laterales 0, abajo 30px */
+}
+
+  .site-title {
+    margin: 0;
+    font-size: 22px;
+  }
+  .filters {
+    display: flex;
+    gap: 8px;
+  }
+  .btn-filter {
+    background: transparent;
+    border: 1px solid #ffffff; /* blanco visible */
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .btn-filter.active {
+    background: #ffffff;
+    color: #0f1220;
+  }
+
+  .btn-filter:hover {
+    opacity: 0.9;
+  }
+
+  /* Botones de filtro en tema claro */
+.light-theme .btn-filter {
+  border-color: #0f1220; /* borde oscuro */
+  color: #0f1220; /* texto oscuro */
+}
+.light-theme .btn-filter.active {
+  background: #0f1220; /* fondo oscuro */
+  color: #ffffff; /* texto blanco */
+}
+  
+  /* =========================
+     Grid contenedor
+     ========================= */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  #cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--grid-gap);
+  }
+  @media (max-width: 900px) {
+    #cards-container { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    #cards-container { grid-template-columns: 1fr; }
+  }
+  
+  /* =========================
+     Card
+     Estructura de áreas:
+     ┌───────────┬─────────────────────────────┐
+     │   logo    │           content           │  (fila 1)
+     ├───────────┼─────────────────────────────┤
+     │  remove   │            toggle           │  (fila 2)
+     └───────────┴─────────────────────────────┘
+     ========================= */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "logo content"
+      "remove toggle";
+    gap: 12px 16px;
+    align-items: start;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(0,0,0,.35);
+  }
+  
+  /* Logo (izquierda fila 1) */
+  .card__logo {
+    grid-area: logo;
+    width: 76px;
+    height: 76px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .card__logo img {
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
+  }
+  
+  /* Contenido (derecha fila 1) */
+  .card__content {
+    grid-area: content;
+    display: grid;
+    gap: 6px;
+  }
+  .card__title { margin: 0; font-size: 18px; }
+  .card__desc  { margin: 0; color: var(--muted); font-size: 14px; }
+  
+  /* Remove (izquierda, debajo del logo) */
+  .btn-remove {
+  grid-area: remove;
+  justify-self: start;
+  align-self: center; /* 💡 Centra verticalmente */
+  background: var(--card);
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+  .btn-remove:hover {
+    background: #ef4444;  /* rojo al hover */
+    border-color: #ef4444;
+    color: #ffffff;
+  }
+  /* Botón Remove en tema claro */
+.light-theme .btn-remove {
+  background: var(--card);
+  color: #0f1220; /* texto oscuro */
+  border-color: #0f1220; /* borde oscuro */
+}
+.light-theme .btn-remove:hover {
+  background: #ef4444; /* sigue rojo al hover */
+  border-color: #ef4444;
+  color: #ffffff; /* texto blanco en hover */
+}
+/* Toggle (derecha, misma fila que remove) */
+  .btn-toggle,
+.toggle-icon {
+  grid-area: toggle;
+  justify-self: end;
+  align-self: center; /* 💡 Centra verticalmente */
+}
+  .toggle-icon:focus {
+    outline: 2px solid #6c9cff; /* accesible con teclado */
+    outline-offset: 2px;
+  }
